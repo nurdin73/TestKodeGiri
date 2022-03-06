@@ -1,0 +1,313 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "SEvent Managements",
+        "description": "Ini adalah dokumentasi api dari aplikasi event management.",
+        "contact": {
+            "email": "nurdin.reverse73@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api",
+            "description": "OpenApi event"
+        }
+    ],
+    "paths": {
+        "/": {},
+        "/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "description": "",
+                "operationId": "8219daf931207ead04d96f2b2d1a88aa",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "Email login",
+                                        "type": "string",
+                                        "default": "admin@example.com"
+                                    },
+                                    "password": {
+                                        "description": "Password login",
+                                        "type": "string",
+                                        "default": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success login"
+                    },
+                    "401": {
+                        "description": "failed login"
+                    }
+                }
+            }
+        },
+        "/events": {
+            "get": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Find Events",
+                "description": "Returns a single pet",
+                "operationId": "getEvents",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Pet not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Add event",
+                "description": "",
+                "operationId": "addEvent",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "title": "name",
+                                        "description": "Title of event",
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "title": "date",
+                                        "description": "date event",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "time": {
+                                        "title": "time",
+                                        "description": "time event",
+                                        "type": "string",
+                                        "format": "time"
+                                    },
+                                    "location": {
+                                        "title": "location",
+                                        "description": "location event",
+                                        "type": "string"
+                                    },
+                                    "thumbnail": {
+                                        "title": "thumbnail",
+                                        "description": "Thumbnail",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "422": {
+                        "description": "field required"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/events/{id}": {
+            "get": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Detail Event",
+                "description": "Returns a single event",
+                "operationId": "getEventsId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Pet not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Update event",
+                "description": "",
+                "operationId": "updateEvent",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id event",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "title": "name",
+                                        "description": "Title of event",
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "title": "date",
+                                        "description": "date event",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "time": {
+                                        "title": "time",
+                                        "description": "time event",
+                                        "type": "string",
+                                        "format": "time"
+                                    },
+                                    "location": {
+                                        "title": "location",
+                                        "description": "location event",
+                                        "type": "string"
+                                    },
+                                    "thumbnail": {
+                                        "title": "thumbnail",
+                                        "description": "Thumbnail",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "422": {
+                        "description": "field required"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Deletes a event",
+                "description": "",
+                "operationId": "deleteEvent",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id event",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Pet not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "sanctum": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
